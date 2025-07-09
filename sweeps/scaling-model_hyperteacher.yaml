@@ -1,0 +1,54 @@
+method: grid
+metric:
+  goal: maximize
+  name: ood_r2
+name: model-size_hyperteacher
+parameters:
+  config:
+    values:
+      - configs/teacher.py
+  config.callbacks.mlp_probing:
+    value: true
+  config.dataset.env.latent_encoding:
+    values:
+      - identity
+      - orthogonal
+      - tokens
+      - invertible_nn
+      - interval_shuffle
+      - fewshot
+  config.dataset.env.num_hot:
+    values:
+      - 3
+  config.dataset.env.num_modules:
+    values:
+      - 16
+  config.dataset.frac_ood:
+    values:
+      - 0.25
+  config.dataset.num_train:
+    value: 38400000
+  config.dataset.task_support:
+    values:
+      - random
+  config.log_every:
+    value: 1000
+  config.log_level:
+    value: 1
+  config.model.d_mlp:
+    values:
+      - 128
+      - 256
+      - 512
+      - 1024
+      - 2048
+  config.model.num_hidden_layers:
+    values:
+      - 2
+      - 4
+  config.seed:
+    values:
+      - 1
+      - 2
+      - 3
+program: run.py

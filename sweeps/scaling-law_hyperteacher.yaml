@@ -1,0 +1,37 @@
+method: grid
+metric:
+  goal: maximize
+  name: ood_r2
+name: scaling-law_hyperteacher_transformer
+parameters:
+  config:
+    values:
+      - configs/teacher.py
+  config.seed:
+    values:
+      - 1
+      - 2
+      - 3
+  config.dataset.env.num_modules:
+    values: [10, 12, 14, 16, 18, 20, 22, 24, 26, 28,]
+  config.dataset.env.num_hot:
+    values: [4, 5, 6]
+  config.log_every:
+    value: 10000
+  config.log_level:
+    value: 1
+  config.model.policy_type:
+    values:
+      - mlp
+      - transformer
+  config.dataset.frac_ood:
+    values: [0.9, 0.95, 0.98, 0.99, 0.995, 0.9975, 0.999, 0.9995, 0.99975, 0.9999, 0.99995, 0.999975, 0.99999, 0.999995, 0.999999]
+  config.dataset.task_support:
+    values:
+      - equal
+  config.dataset.env.latent_encoding:
+    values:
+      - identity
+  config.dataset.num_train:
+    value: 38400000
+program: run.py

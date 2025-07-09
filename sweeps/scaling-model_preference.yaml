@@ -1,0 +1,56 @@
+method: grid
+metric:
+  goal: maximize
+  name: ood_acc_all
+name: scaling-model_preference
+parameters:
+  config:
+    values:
+      - configs/preference.py
+  config.seed:
+    values:
+      - 1
+      - 2
+      - 3
+  config.dataset.env.num_features:
+    value: 16
+  config.dataset.env.num_preferences:
+    value: 16
+  config.dataset.env.num_hot:
+    value: 3
+  config.log_every:
+    value: 10000
+  config.log_level:
+    value: 1
+  config.dataset.frac_ood:
+    value: 0.25
+  config.dataset.task_support:
+    values:
+      - random
+  config.model.d_mlp:
+    values:
+      - 16
+      - 32
+      - 64
+      - 128
+      - 256
+      - 512
+      - 1024
+      - 2048
+  config.model.num_hidden_layers:
+    values:
+      - 2
+      - 4
+  config.dataset.env.latent_encoding:
+    values:
+      - identity
+      - orthogonal
+      - tokens
+      - invertible_nn
+      - interval_shuffle
+      - fewshot
+  config.callbacks.mlp_probing:
+    value: true
+  config.dataset.num_train:
+    value: 384000000
+program: run.py

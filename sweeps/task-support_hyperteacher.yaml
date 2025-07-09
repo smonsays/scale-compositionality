@@ -1,0 +1,43 @@
+method: grid
+metric:
+  goal: maximize
+  name: ood_r2
+name: task-support_hyperteacher
+parameters:
+  config:
+    values:
+      - configs/teacher.py
+  config.dataset.env.latent_encoding:
+    values:
+      - identity
+  config.dataset.env.num_hot:
+    values:
+      - 3
+  config.dataset.env.num_modules:
+    values:
+      - 16
+  config.dataset.frac_ood:
+    values:
+      - 0.25
+  config.dataset.num_train:
+    value: 38400000
+  config.dataset.task_support:
+    values:
+      - random
+      - equal
+      - pseudo_random_disconnected
+      - non_compositional
+      - popular_modules
+      - unpopular_modules
+  config.callbacks.mlp_probing:
+    value: true
+  config.log_every:
+    value: 1000
+  config.log_level:
+    value: 1
+  config.seed:
+    values:
+      - 1
+      - 2
+      - 3
+program: run.py

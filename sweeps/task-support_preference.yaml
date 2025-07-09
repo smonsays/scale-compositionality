@@ -1,0 +1,42 @@
+method: grid
+metric:
+  goal: maximize
+  name: ood_acc_all
+name: task-support_preference
+parameters:
+  config:
+    values:
+      - configs/preference.py
+  config.seed:
+    values:
+      - 1
+      - 2
+      - 3
+  config.dataset.env.num_features:
+    value: 16
+  config.dataset.env.num_preferences:
+    value: 16
+  config.dataset.env.num_hot:
+    value: 3
+  config.log_every:
+    value: 10000
+  config.log_level:
+    value: 1
+  config.dataset.frac_ood:
+    value: 0.25
+  config.dataset.task_support:
+    values:
+      - random
+      - equal
+      - pseudo_random_disconnected
+      - non_compositional
+      - popular_modules
+      - unpopular_modules
+  config.dataset.env.latent_encoding:
+    values:
+      - identity
+  config.callbacks.mlp_probing:
+    value: true
+  config.dataset.num_train:
+    value: 384000000
+program: run.py
