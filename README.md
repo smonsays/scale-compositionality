@@ -1,6 +1,6 @@
 # Scale leads to compositional generalization
 
-Official code for the paper [Scale leads to compositional generalization](#).
+Official code for the paper [Scale leads to compositional generalization](https://arxiv.org/abs/2507.07207).
 
 Code to run the image generation experiments can be found [in this repository](https://github.com/florian-toll/compgen-vision).
 
